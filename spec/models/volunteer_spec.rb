@@ -128,4 +128,37 @@ RSpec.describe Volunteer, type: :model do
     expect(volunteer2.errors[:org_pass]).to include("has already been taken")
   end
 
+  describe "self#by_name" do
+    it "should return a sorted array of results that match" do
+        
+      
+      volunteer = Volunteer.create(
+        org_name: 'Bersih-bersih',
+        org_email: 'volunteerbb2be@gmail.com',
+        org_phone: '08136789002',
+        org_address: 'Jl. Mulawarman no 19',
+        org_pass: '1234'
+      )
+  
+      volunteer2 = Volunteer.create(
+        org_name: 'Buang sampah',
+        org_email: 'sampah@gmail.com',
+        org_phone: '0812313123',
+        org_address: 'Jl. Mulawarman no 100',
+        org_pass: '0991'
+      )
+
+      volunteer3 = Volunteer.create(
+        org_name: 'Badan peduli sampah',
+        org_email: 'peduli@gmail.com',
+        org_phone: '0822912898122',
+        org_address: 'Jl. pahlawan no 90',
+        org_pass: '09093'
+      )
+
+      expect(Volunteer.by_name("B")).to eq([volunteer3, volunteer, volunteer2])
+    end
+
+  end
+
 end

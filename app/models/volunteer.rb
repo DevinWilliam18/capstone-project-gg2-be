@@ -5,10 +5,11 @@ class Volunteer < ApplicationRecord
     validates :org_address, presence: true
     validates :org_pass, presence: true, uniqueness: true
 
-    def method_name
-        
+    def self.by_name(letter)
+        where("org_name LIKE ?", "#{letter}%").order(:org_name)
     end
-    
 
+
+    
 
 end
