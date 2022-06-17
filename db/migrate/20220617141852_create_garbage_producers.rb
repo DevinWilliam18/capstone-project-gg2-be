@@ -7,6 +7,7 @@ class CreateGarbageProducers < ActiveRecord::Migration[7.0]
       t.text :address
       t.time :opening_time
       t.time :closing_time
+      t.references :province, null: false, foreign_key: true
 
       t.timestamps
     end

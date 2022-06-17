@@ -6,6 +6,7 @@ class CreateVolunteers < ActiveRecord::Migration[7.0]
       t.string :org_phone
       t.string :org_address
       t.string :org_pass
+      
 
       t.timestamps
     end

@@ -18,8 +18,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_141852) do
     t.text "address"
     t.time "opening_time"
     t.time "closing_time"
+    t.integer "province_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["province_id"], name: "index_garbage_producers_on_province_id"
   end
 
   create_table "volunteers", force: :cascade do |t|
@@ -32,4 +34,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_141852) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "garbage_producers", "provinces"
 end
