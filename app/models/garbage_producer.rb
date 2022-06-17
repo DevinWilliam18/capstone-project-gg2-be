@@ -1,0 +1,2 @@
+class GarbageProducer < ApplicationRecord
+end

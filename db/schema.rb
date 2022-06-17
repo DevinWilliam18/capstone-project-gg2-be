@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_14_130250) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_17_141852) do
+  create_table "garbage_producers", force: :cascade do |t|
+    t.string "producer_name"
+    t.string "producer_pass"
+    t.string "email_producer"
+    t.text "address"
+    t.time "opening_time"
+    t.time "closing_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "volunteers", force: :cascade do |t|
     t.string "org_name"
     t.string "org_email"
