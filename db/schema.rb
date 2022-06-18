@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_080825) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_18_081505) do
   create_table "cities", force: :cascade do |t|
     t.string "city_name"
     t.integer "province_id", null: false
@@ -24,6 +24,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_080825) do
     t.date "expiration_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "detail_orders", force: :cascade do |t|
+    t.integer "foods_id", null: false
+    t.integer "orders_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["foods_id"], name: "index_detail_orders_on_foods_id"
+    t.index ["orders_id"], name: "index_detail_orders_on_orders_id"
   end
 
   create_table "foods", force: :cascade do |t|
@@ -78,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_080825) do
   end
 
   add_foreign_key "cities", "provinces"
+  add_foreign_key "detail_orders", "foods", column: "foods_id"
+  add_foreign_key "detail_orders", "orders", column: "orders_id"
   add_foreign_key "foods", "conditions", column: "conditions_id"
   add_foreign_key "foods", "producers", column: "producers_id"
   add_foreign_key "garbage_producers", "provinces"
