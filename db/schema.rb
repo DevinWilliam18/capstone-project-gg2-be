@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_074809) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_18_080131) do
   create_table "cities", force: :cascade do |t|
     t.string "city_name"
     t.integer "province_id", null: false
@@ -24,6 +24,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_074809) do
     t.date "expiration_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string "food_name"
+    t.integer "food_quantity"
+    t.text "food_desc"
+    t.integer "conditions_id", null: false
+    t.integer "producers_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conditions_id"], name: "index_foods_on_conditions_id"
+    t.index ["producers_id"], name: "index_foods_on_producers_id"
   end
 
   create_table "garbage_producers", force: :cascade do |t|
@@ -56,5 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_074809) do
   end
 
   add_foreign_key "cities", "provinces"
+  add_foreign_key "foods", "conditions", column: "conditions_id"
+  add_foreign_key "foods", "producers", column: "producers_id"
   add_foreign_key "garbage_producers", "provinces"
 end
