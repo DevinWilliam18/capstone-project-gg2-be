@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_080131) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_18_080825) do
   create_table "cities", force: :cascade do |t|
     t.string "city_name"
     t.integer "province_id", null: false
@@ -51,6 +51,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_080131) do
     t.index ["province_id"], name: "index_garbage_producers_on_province_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.datetime "order_time"
+    t.string "status"
+    t.datetime "finished_time"
+    t.integer "volunteers_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["volunteers_id"], name: "index_orders_on_volunteers_id"
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string "province_name"
     t.datetime "created_at", null: false
@@ -71,4 +81,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_080131) do
   add_foreign_key "foods", "conditions", column: "conditions_id"
   add_foreign_key "foods", "producers", column: "producers_id"
   add_foreign_key "garbage_producers", "provinces"
+  add_foreign_key "orders", "volunteers", column: "volunteers_id"
 end
