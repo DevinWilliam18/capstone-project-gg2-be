@@ -8,8 +8,5 @@ class Volunteer < ApplicationRecord
     def self.by_name(letter)
         where("org_name LIKE ?", "#{letter}%").order(:org_name)
     end
-
-
     
-
 end

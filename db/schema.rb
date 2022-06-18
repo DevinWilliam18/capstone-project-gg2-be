@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_17_141852) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_18_074809) do
+  create_table "cities", force: :cascade do |t|
+    t.string "city_name"
+    t.integer "province_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["province_id"], name: "index_cities_on_province_id"
+  end
+
+  create_table "conditions", force: :cascade do |t|
+    t.string "condition_type"
+    t.date "expiration_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "garbage_producers", force: :cascade do |t|
     t.string "producer_name"
     t.string "producer_pass"
@@ -24,6 +39,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_141852) do
     t.index ["province_id"], name: "index_garbage_producers_on_province_id"
   end
 
+  create_table "provinces", force: :cascade do |t|
+    t.string "province_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "volunteers", force: :cascade do |t|
     t.string "org_name"
     t.string "org_email"
@@ -34,5 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_17_141852) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cities", "provinces"
   add_foreign_key "garbage_producers", "provinces"
 end
