@@ -9,4 +9,6 @@ class Volunteer < ApplicationRecord
         where("org_name LIKE ?", "#{letter}%").order(:org_name)
     end
     
+    
+
 end

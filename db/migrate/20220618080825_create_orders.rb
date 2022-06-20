@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.datetime :order_time
       t.string :status
       t.datetime :finished_time
-      t.references :volunteers, null: false, foreign_key: true
+      t.references :volunteer, null: false, foreign_key: true
 
       t.timestamps
     end

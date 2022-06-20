@@ -11,5 +11,8 @@ class CreateGarbageProducers < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    #add_index :table_name, :column_name, options: "custom_index_name"
+    #Ex:- add_index("admin_users", "username")
   end
 end

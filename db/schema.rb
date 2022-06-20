@@ -27,25 +27,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_081505) do
   end
 
   create_table "detail_orders", force: :cascade do |t|
-    t.integer "foods_id", null: false
-    t.integer "orders_id", null: false
+    t.integer "food_id", null: false
+    t.integer "order_id", null: false
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["foods_id"], name: "index_detail_orders_on_foods_id"
-    t.index ["orders_id"], name: "index_detail_orders_on_orders_id"
+    t.index ["food_id"], name: "index_detail_orders_on_food_id"
+    t.index ["order_id"], name: "index_detail_orders_on_order_id"
   end
 
   create_table "foods", force: :cascade do |t|
     t.string "food_name"
     t.integer "food_quantity"
     t.text "food_desc"
-    t.integer "conditions_id", null: false
-    t.integer "producers_id", null: false
+    t.integer "condition_id", null: false
+    t.integer "garbage_producer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["conditions_id"], name: "index_foods_on_conditions_id"
-    t.index ["producers_id"], name: "index_foods_on_producers_id"
+    t.index ["condition_id"], name: "index_foods_on_condition_id"
+    t.index ["garbage_producer_id"], name: "index_foods_on_garbage_producer_id"
   end
 
   create_table "garbage_producers", force: :cascade do |t|
@@ -65,10 +65,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_081505) do
     t.datetime "order_time"
     t.string "status"
     t.datetime "finished_time"
-    t.integer "volunteers_id", null: false
+    t.integer "volunteer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["volunteers_id"], name: "index_orders_on_volunteers_id"
+    t.index ["volunteer_id"], name: "index_orders_on_volunteer_id"
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -88,10 +88,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_081505) do
   end
 
   add_foreign_key "cities", "provinces"
-  add_foreign_key "detail_orders", "foods", column: "foods_id"
-  add_foreign_key "detail_orders", "orders", column: "orders_id"
-  add_foreign_key "foods", "conditions", column: "conditions_id"
-  add_foreign_key "foods", "producers", column: "producers_id"
+  add_foreign_key "detail_orders", "foods"
+  add_foreign_key "detail_orders", "orders"
+  add_foreign_key "foods", "conditions"
+  add_foreign_key "foods", "garbage_producers"
   add_foreign_key "garbage_producers", "provinces"
-  add_foreign_key "orders", "volunteers", column: "volunteers_id"
+  add_foreign_key "orders", "volunteers"
 end
