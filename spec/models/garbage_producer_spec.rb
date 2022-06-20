@@ -124,8 +124,5 @@ RSpec.describe GarbageProducer, type: :model do
     end
     
   end
-  
-  
-  
 
 end

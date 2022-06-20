@@ -10,10 +10,6 @@ class GarbageProducer < ApplicationRecord
         where("province_id = ?", "#{id_prov}")
     end
 
-    # def self.by_city(city)
-    #     where()
-    # end
-
     def self.by_name(prov_name)
         where("producer_name LIKE ?", "#{prov_name}%").order(:producer_name)
     end
