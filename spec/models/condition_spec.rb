@@ -15,25 +15,22 @@ RSpec.describe Condition, type: :model do
   
   end
   
-  it "is invalid without a expiration_date" do
-    condition = FactoryBot.build(:condition, expiration_date: nil)
+  # it "is invalid without a expiration_date" do
+  #   condition = FactoryBot.build(:condition, expiration_date: nil)
 
-    condition.valid?
+  #   condition.valid?
 
-    expect(condition.errors['expiration_date']).to include("can't be blank")
-  end
+  #   expect(condition.errors['expiration_date']).to include("can't be blank")
+  # end
 
-  it " is invalid with a wrong date format" do
+  # it " is invalid with a wrong date format" do
 
-    condition = FactoryBot.build(:condition, expiration_date: 'Mon, 20 Jun 2022')
+  #   condition = FactoryBot.build(:condition, expiration_date: 'Mon, 20 Jun 2022')
 
-    condition.valid?
+  #   condition.valid?
 
-    expect(condition.errors['expiration_date']).to include("is invalid")
+  #   expect(condition.errors['expiration_date']).to include("is invalid")
 
-  end
+  # end
   
-
-
-
 end

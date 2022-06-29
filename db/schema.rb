@@ -21,7 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_081505) do
 
   create_table "conditions", force: :cascade do |t|
     t.string "condition_type"
-    t.date "expiration_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_081505) do
     t.string "food_name"
     t.integer "food_quantity"
     t.text "food_desc"
+    t.date "expiration_date"
     t.integer "condition_id", null: false
     t.integer "garbage_producer_id", null: false
     t.datetime "created_at", null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_081505) do
 
   create_table "orders", force: :cascade do |t|
     t.datetime "order_time"
-    t.string "status"
+    t.string "status", default: "NOT CONFIRMED"
     t.datetime "finished_time"
     t.integer "volunteer_id", null: false
     t.datetime "created_at", null: false

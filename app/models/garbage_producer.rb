@@ -6,6 +6,12 @@ class GarbageProducer < ApplicationRecord
     validates :opening_time, presence: true
     validates :closing_time, presence: true
 
+    has_many :foods
+    # validates_associated :foods
+
+    belongs_to :province
+    # validates_associated :province, on: :create
+
     def self.by_id_province(id_prov)
         where("province_id = ?", "#{id_prov}")
     end
@@ -14,4 +20,6 @@ class GarbageProducer < ApplicationRecord
         where("producer_name LIKE ?", "#{prov_name}%").order(:producer_name)
     end
 
+
+    
 end

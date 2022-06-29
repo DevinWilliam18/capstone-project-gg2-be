@@ -108,4 +108,6 @@ RSpec.describe Volunteer, type: :model do
 
   end
 
+
+
 end

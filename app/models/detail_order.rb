@@ -1,4 +1,8 @@
 class DetailOrder < ApplicationRecord
-  belongs_to :foods
-  belongs_to :orders
+  belongs_to :food
+  belongs_to :order
+
+  validates :quantity, presence: true
+
+  
 end
