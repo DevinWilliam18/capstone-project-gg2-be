@@ -32,6 +32,8 @@ RSpec.describe "Volunteers", type: :request do
       #   end
         
       # end
+
+
     end
     describe "POST #create" do
       context "inserting records into database with valid parameters" do
@@ -59,26 +61,45 @@ RSpec.describe "Volunteers", type: :request do
       
     end
     
-    describe "POST #update" do
+    # describe "POST #update" do
       
-      it "updating volunteer with valid params" do
-        
-        
-        volunteer1 = FactoryBot.build(:volunteer)
-        put "/volunteers/#{volunteer1.id}"
-        
-        volunteer2 = FactoryBot.create(:volunteer, org_name: "Virgennion Amburawa", org_email: "amburawa@yahoo.com", org_phone: "081290127865", org_address: "JL. Sultan Hasanudin no 192", org_pass:"jkwiranto112")
+    #   context "updating volunteer with valid params" do
 
-        expect(volunteer1.update({
-          org_name: "Virgennion Amburawa",
-          org_email: "amburawa@yahoo.com",
-          org_phone: "081290127865",
-          org_address: "JL. Sultan Hasanudin no 192",
-          org_pass:"jkwiranto112"
-        })).to eq volunteer2 
-      end
+    #     it "for changing name" do
+        
+    #       volunteer1 = FactoryBot.create(:volunteer)  
 
-    end
+    #       put "/volunteers/#{volunteer1.id}"
+        
+    #       volunteer2 = FactoryBot.build(:volunteer, org_name: "Virgennion Amburawa", org_email: "amburawa@yahoo.com", org_phone: "081290127865", org_address: "JL. Sultan Hasanudin no 192", org_pass:"jkwiranto112")
+          
+
+    #       # updated_date = volunteer1.update(
+    #       # );
+    #       expect(volunteer1.update({
+    #             org_name: "Virgennion Amburawa",
+    #             org_email: "amburawa@yahoo.com",
+    #             org_phone: "081290127865",
+    #             org_address: "JL. Sultan Hasanudin no 192",
+    #             org_pass: "jkwiranto112"
+    #           }
+              
+    #       )[:org_name]).to eq(volunteer2[:org_name])
+
+
+    #     end
+
+    #     # it "changes email" do
+          
+    #     # end
+
+    #     # it "changes phone" do
+          
+    #     # end
+
+    #   end
+      
+    # end
     
     
     
