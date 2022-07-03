@@ -4,9 +4,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :res_name do
-    
-  end
 
   get '/volunteers', to: 'volunteers#index'
   get '/volunteers/:id', to: 'volunteers#show'
@@ -15,5 +12,23 @@ Rails.application.routes.draw do
   post '/login', to: 'volunteers#login'
   
   put '/volunteers/:id', to: 'volunteers#update'
+
+  # get '/garbage_producers', to: 'garbage_producers#index'
+
+  resources :garbage_producers do
+    resources :foods do
+      resources :detail_orders
+    end
+  end
+
+  resources :volunteers do
+    resources :orders do
+      resources :detail_orders
+    end
+  end
+
+  get '/foods', to: 'foods#index'
+  get '/foods/:id', to: 'foods#show'
+
 end
 #login?volunteer

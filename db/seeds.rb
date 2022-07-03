@@ -37,3 +37,17 @@ restaurants = GarbageProducer.create([
     {producer_name: "Rumah Makan Borobudur", producer_pass: "borobudur1234", email_producer: "boro77@gmail.com", address: "JL candi NO 5 A", opening_time: "08:00", closing_time: "22:00", province_id: 10},
     {producer_name: "Fried Chicken 90", producer_pass: "chicken90", email_producer: "chicken90@gmail.com", address: "JL pemotongan NO 5 A", opening_time: "09:00", closing_time: "21:00", province_id: 12}
 ])
+
+conditions = Condition.create([
+    {condition_type: "Not fit for consumption"},
+    {condition_type: "Worth consuming food"}
+])
+
+foods = Food.create([
+    {food_name: "Cap jay seafood (porsi)", food_quantity: 2, food_desc: "masih utuh belum berjamur, sayurnya masih cukup segar, belum berbau busuk, dan sedang disimpan di freezer", expiration_date: "06-07-2022", condition_id: 2, garbage_producer_id: 2},
+    {food_name: "Sop saudara (porsi)", food_quantity: 4, food_desc: "masih utuh belum berjamur dan belum berbau busuk, sedang disimpan di freezer", expiration_date: "06-07-2022", condition_id: 2, garbage_producer_id: 2},
+    {food_name: "Ayam kare (porsi)", food_quantity: 3, food_desc: "sudah lewat masa expired-nya", expiration_date: "02-07-2022", condition_id: 1, garbage_producer_id: 2},
+    {food_name: "semur ayam (porsi)", food_quantity: 2, food_desc: "sudah lewat masa expired-nya", expiration_date: "02-07-2022", condition_id: 1, garbage_producer_id: 2},
+    {food_name: "Sari Roti (bungkus)", food_quantity: 100, food_desc: "Masih utuh dan belum berjamur dan sedang disimpan di freezer", expiration_date: "10-07-2022", condition_id: 2, garbage_producer_id:1 }
+])
+

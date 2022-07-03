@@ -12,14 +12,12 @@ class GarbageProducer < ApplicationRecord
     belongs_to :province
     # validates_associated :province, on: :create
 
-    def self.by_id_province(id_prov)
-        where("province_id = ?", "#{id_prov}")
+    def self.by_id_province(param)
+        where("province_id = ?", "#{param}")
     end
 
-    def self.by_name(prov_name)
-        where("producer_name LIKE ?", "#{prov_name}%").order(:producer_name)
+    def self.by_name(param)
+        where("producer_name LIKE ?", "#{param}%").order(:producer_name)
     end
 
-
-    
 end
