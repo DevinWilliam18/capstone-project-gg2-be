@@ -10,8 +10,8 @@ class Volunteer < ApplicationRecord
         where("org_name LIKE ?", "#{letter}%").order(:org_name)
     end
 
-    def self.by_email_and_pass?(params)    
-        where("org_email = ?","#{params[:org_email]}"," AND org_pass = ?", "#{params[:org_pass]}").present?
+    def self.by_email_and_pass(params_hash)    
+        where("org_email=? AND org_pass = ?","#{params_hash[:org_email]}" ,"#{params_hash[:org_pass]}")
     end
     
      

@@ -30,21 +30,35 @@ class VolunteersController < ApplicationController
       end
   end
   
-  def login
-    res = Volunteer.by_email_and_pass(login_params)?
+  # def login
+  #   res = Volunteer.by_email_and_pass(login_params)?
 
-    if res
-      render json: {response: "successfuly login"}  
-    end
-
-    flash[:alert] = "User not found."
+  #   if res
+  #     render json: {response: "successfuly login"}
     
-  end
+  #   else  
+  #     flash[:alert] = "User not found."
+  #   end
+
+    
+    
+  # end
   
   def destroy
     @volunteer.destroy
   end
   
+  def login
+    res = Volunteer.by_email_and_pass(login_params)
+
+    if res.present? 
+      # ret = {status: "success", code: 202}
+      redirect_to action: "show", id: res[:id] and return
+    
+    else  
+      render json: {status: :not_found, code: 404}
+    end
+  end
 
   private
     def set_volunteer
