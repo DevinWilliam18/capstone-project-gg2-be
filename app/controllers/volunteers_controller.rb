@@ -17,7 +17,7 @@ class VolunteersController < ApplicationController
       if @volunteer_1.save
         render json: @volunteer_1, status: :created
       else
-      render error: {error: 'Unable to create volunteer.'}, status: 400
+        render error: {error: 'Unable to create volunteer.'}, status: 400
       end
   end
 

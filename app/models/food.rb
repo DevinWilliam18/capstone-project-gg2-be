@@ -22,8 +22,13 @@ class Food < ApplicationRecord
     
   end
 
-  def self.by_id_producer(id_resto)
-    where("garbage_producer_id = ?", "#{id_resto}")
+  def self.by_id_province(letter)
+    #should add join table
+    where("garbage_producer_id = ?", "#{letter}")
+  end
+
+  def self.by_name(letter)
+    where("food_name LIKE ?", "#{letter}%").order(:food_name)
   end
 
 end
