@@ -4,13 +4,10 @@ class FoodsController < ApplicationController
     def index
         @foods = Food.all
         if params[:controller] == 'garbage_producers'
-            if params[:letter].is_a?(Integer)
-                #should add join table
-                @foods = Food.where(garbage_producer_id: params[:controller][:garbage_producer_id]).by_id_province(params[:letter])
-            elsif params[:letter].is_a?(String)
-                @foods = Food.where(garbage_producer_id: params[:controller][:garbage_producer_id]).by_name(params[:letter])
+            if params[:letter].is_a?(String)
+                @foods = Food.where(garbage_producer_id: params[:controller][:id]).by_name(params[:letter])
             else
-                @foods = Food.where(garbage_producer_id: params[:controller][:garbage_producer_id])  
+                @foods = Food.where(garbage_producer_id: params[:controller][:id])  
             end
             
         else
@@ -33,6 +30,7 @@ class FoodsController < ApplicationController
     end
     
     def create
+        
     end
 
     # def update
