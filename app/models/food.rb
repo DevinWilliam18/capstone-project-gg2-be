@@ -24,7 +24,10 @@ class Food < ApplicationRecord
 
   def self.by_id_province(letter)
     #should add join table
-    where("garbage_producer_id = ?", "#{letter}")
+    
+    #jointable to check province_id in garbage_producer table
+    joins(:garbage_producer).select("foods.*").where(garbage_producers: {province_id: "#{letter}"}).order(:food_name)
+
   end
 
   def self.by_name(letter)

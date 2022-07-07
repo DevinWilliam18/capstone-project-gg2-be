@@ -3,13 +3,26 @@ class FoodsController < ApplicationController
 
     def index
         @foods = Food.all
-
-       if params[:letter].is_a?(Integer)
-        #should add join table
-            @foods = Food.by_id_province(params[:letter])
-       elsif params[:letter].is_a?(String)
-            @foods = Food.by_name(params[:letter])
-       end
+        if params[:controller] == 'garbage_producers'
+            if params[:letter].is_a?(Integer)
+                #should add join table
+                @foods = Food.where(garbage_producer_id: params[:controller][:garbage_producer_id]).by_id_province(params[:letter])
+            elsif params[:letter].is_a?(String)
+                @foods = Food.where(garbage_producer_id: params[:controller][:garbage_producer_id]).by_name(params[:letter])
+            else
+                @foods = Food.where(garbage_producer_id: params[:controller][:garbage_producer_id])  
+            end
+            
+        else
+            if params[:letter].is_a?(Integer)
+                #should add join table
+                @foods = Food.by_id_province(params[:letter])
+            elsif params[:letter].is_a?(String)
+                @foods = Food.by_name(params[:letter])
+            else
+                @foods = Food.all
+            end
+        end
 
        render json: @foods
 
@@ -40,7 +53,6 @@ class FoodsController < ApplicationController
         else
             @food = Food.find(params[:id])
         end
-        
      end
 
      def food_params
