@@ -5,13 +5,13 @@ Rails.application.routes.draw do
   # root "articles#index"
 
 
-  get '/volunteers', to: 'volunteers#index'
-  get '/volunteers/:id', to: 'volunteers#show'
-  post '/volunteers', to: 'volunteers#create'
+  # get '/volunteers', to: 'volunteers#index'
+  # get '/volunteers/:id', to: 'volunteers#show'
+  # post '/volunteers', to: 'volunteers#create'
 
-  post '/login', to: 'volunteers#login'
+  # post '/login', to: 'volunteers#login'
   
-  put '/volunteers/:id', to: 'volunteers#update'
+  # put '/volunteers/:id', to: 'volunteers#update'
 
   # get '/garbage_producers', to: 'garbage_producers#index'
 

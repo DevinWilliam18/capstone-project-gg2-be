@@ -1,61 +1,67 @@
 class FoodsController < ApplicationController
-    before_action :set_food, only: %i[ show update destroy]
+    before_action :get_resto, only: [:show, :create]
+    before_action :set_food, only: [:show, :update, :destroy]
 
     def index
         @foods = Food.all
-        if params[:controller] == 'garbage_producers'
-            if params[:letter].is_a?(String)
-                @foods = Food.where(garbage_producer_id: params[:controller][:id]).by_name(params[:letter])
-            else
-                @foods = Food.where(garbage_producer_id: params[:controller][:id])  
-            end
-            
-        else
-            if params[:letter].is_a?(Integer)
-                #should add join table
-                @foods = Food.by_id_province(params[:letter])
-            elsif params[:letter].is_a?(String)
-                @foods = Food.by_name(params[:letter])
-            else
-                @foods = Food.all
-            end
+        
+        if params[:letter].is_a?(Integer)
+            #should add join table
+            @foods = Food.by_id_province(params[:letter])
+        elsif params[:letter].is_a?(String)
+            @foods = Food.by_name(params[:letter])
         end
 
        render json: @foods
-
     end
 
     def show
+        if @resto.nil?
+            @food = Food.find(params[:id])
+        end
+        
        render json: @food
     end
     
     def create
+        @food = @resto.foods.build(food_params)
+        
+        if @food.save
+            render json: @food, status: :created, location: @resto
+        else
+            render json: @food.errors, status: :unprocessable_entity 
+        end
         
     end
 
-    # def update
-    #     @object = Object.find(params[:id])
-    #     if @object.update_attributes(params[:object])
-    #       flash[:success] = "Object was successfully updated"
-    #       redirect_to @object
-    #     else
-    #       flash[:error] = "Something went wrong"
-    #       render 'edit'
-    #     end
-    # end
-    
-    private
-     def set_food
-        if params[:controller] == 'garbage producers'
-            @food = Food.where(garbage_producer_id: params[:garbage_producer_id]).find(params[:id])    
+    def update
+
+        if @food.update(food_params)
+            render json: @food, status: :ok
         else
-            @food = Food.find(params[:id])
+            render json: @food.errors, status: :unprocessable_entity
         end
+    end
+    
+    def destroy
+        @food.destroy
+    end
+    
+
+    private
+    def get_resto
+        @resto = GarbageProducer.find(params[:garbage_producer_id])
+    end
+
+     def set_food
+        @food = @resto.foods.find(params[:id])
      end
 
      def food_params
-        params.require(:food).permit(:food_name, :food_quantity, :food_desc, :expiration_date, :condition_id, :garbage_producer_id)
+        params.require(:food).permit(:food_name, :food_quantity, :food_desc, :expiration_date, :condition_id)
      end
-
-
+     
 end
+
+
+#referenece : https://scoutapm.com/blog/rails-nested-routes
