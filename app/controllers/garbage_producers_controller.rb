@@ -3,7 +3,6 @@ class GarbageProducersController < ApplicationController
 
     def index
         @restaurants = GarbageProducer.all
-
        if params[:param].is_a?(Integer)
             @restaurants = GarbageProducer.by_id_province(params[:param])
        elsif params[:param].is_a?(String)
@@ -35,7 +34,6 @@ class GarbageProducersController < ApplicationController
     def destroy
         @garbage_producer.destroy
     end
-    
     
     private
         def set_garbage_producers

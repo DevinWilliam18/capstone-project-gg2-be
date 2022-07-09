@@ -62,7 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_081505) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.datetime "order_time"
     t.string "status", default: "NOT CONFIRMED"
     t.datetime "finished_time"
     t.integer "volunteer_id", null: false

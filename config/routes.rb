@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :foods do
       resources :detail_orders
     end
+    resources :resources, only: [:update, :index, :show]
   end
 
   resources :volunteers do
