@@ -6,16 +6,18 @@ class Order < ApplicationRecord
 
 
   # apply "confirmed" as well as "finished time" column
-  def self.modify_confirmation(hash_temp)
-    if hash_temp[:status].eql? "NOT CONFIRMED"
-      hash_temp[:status] = "CONFIRMED"
+  # def self.modify_confirmation
+  #   where(status: "NOT CONFIRMED").update_all(status: "CONFIRMED")
 
-      hash_temp[:status]
-    
-    end
-  end
+  # end
 
 
 
   
 end
+ # if hash_temp[:status].eql? "NOT CONFIRMED"
+    #   hash_temp[:status] = "CONFIRMED"
+
+    #   hash_temp
+    
+    # end

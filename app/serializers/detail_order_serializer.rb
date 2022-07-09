@@ -1,3 +1,3 @@
 class DetailOrderSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :food_id, :quantity
 end
