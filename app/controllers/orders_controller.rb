@@ -1,15 +1,23 @@
 class OrdersController < ApplicationController
     before_action :get_org
     before_action :set_order, only: [:show, :update, :destroy]
+    before_action :update_status, only: [:update]
 
     def index
-        @orders = @org.orders
+        @orders = nil
+        if @org.nil? == false
+            @orders = @org.orders            
+        end
 
         render json: @orders
     end
 
     
     def show
+        if @org.nil?
+            @order = Order.find(params[:id])
+        end
+        
         render json: @order
     end
 
@@ -23,15 +31,15 @@ class OrdersController < ApplicationController
     end
 
     def update
-        if @order.update(params.require(:order).permit(:status))
-            if @order[:status] == "CONFIRMED"
-                @order[:finished_time] = DateTime.now.in_time_zone('Jakarta')
-                @order.update(order_update_params)
+        if @update_order.update(params.require(:order).permit(:status))
+            if @update_order[:status] == "CONFIRMED"
+                @update_order[:finished_time] = DateTime.now.in_time_zone('Jakarta')
+                @update_order.update(order_update_params)
             end
             
-            render json: @order, status: :ok
+            render json: @update_order, status: :ok
         else
-            render json: @order.errors, status: :unprocessable_entity
+            render json: @update_order.errors, status: :unprocessable_entity
         end
     end
 
@@ -39,16 +47,33 @@ class OrdersController < ApplicationController
         @order.destroy
     end
 
+    
+    
+
     private
     def get_org
-        @org = Volunteer.find(params[:volunteer_id])
+        @org = nil
+        if params[:volunteer_id].nil?
+            @org = nil
+        else
+            @org = Volunteer.find(params[:volunteer_id])    
+        end
+        
     end
      
      def set_order
-         @order = @org.orders.find(params[:id])
+        if @org.nil?
+            @order = nil
+        else
+            @order = @org.orders.find(params[:id])   
+        end
+         
      end
      
      def order_update_params
          params.require(:order).permit(:status, :finished_time)
      end
+     def update_status
+        @update_order = Order.find(params[:id])
+    end
 end

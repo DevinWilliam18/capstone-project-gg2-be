@@ -19,17 +19,19 @@ Rails.application.routes.draw do
     resources :foods do
       resources :detail_orders
     end
-    resources :resources, only: [:update, :index, :show]
+    
   end
 
   resources :volunteers do
-    resources :orders do
+    resources :orders, except: [:update] do
       resources :detail_orders
     end
   end
 
   get '/foods', to: 'foods#index'
   get '/foods/:id', to: 'foods#show'
+
+  put '/orders/:id', to: 'orders#update'
 
 end
 #login?volunteer

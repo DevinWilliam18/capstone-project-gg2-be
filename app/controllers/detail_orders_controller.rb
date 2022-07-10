@@ -1,6 +1,6 @@
 class DetailOrdersController < ApplicationController
   before_action :get_ord
-  before_action :set_detail, only: [:update, :show, :destory]
+  before_action :set_detail, only: [:update, :show, :destroy]
   
   def index
     @details = @order.detail_orders
