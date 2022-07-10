@@ -24,6 +24,11 @@ class OrdersController < ApplicationController
 
     def update
         if @order.update(params.require(:order).permit(:status))
+            if @order[:status] == "CONFIRMED"
+                @order[:finished_time] = DateTime.now.in_time_zone('Jakarta')
+                @order.update(order_update_params)
+            end
+            
             render json: @order, status: :ok
         else
             render json: @order.errors, status: :unprocessable_entity
@@ -42,10 +47,8 @@ class OrdersController < ApplicationController
      def set_order
          @order = @org.orders.find(params[:id])
      end
-
      
-
-    #  def order_params
-    #      params.require(:order).permit()
-    #  end
+     def order_update_params
+         params.require(:order).permit(:status, :finished_time)
+     end
 end

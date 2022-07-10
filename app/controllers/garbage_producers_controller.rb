@@ -36,10 +36,10 @@ class GarbageProducersController < ApplicationController
     end
     
     private
-        def set_garbage_producers
-            @garbage_producer= GarbageProducer.find(params[:id])
-        end
-        def garbage_producers_params
-            params.require(:garbage_producer).permit(:producer_name, :producer_pass, :email_producer, :address, :opening_time, :closing_time, :province_id)
-        end
+    def set_garbage_producers
+        @garbage_producer= GarbageProducer.find(params[:id])
+    end
+    def garbage_producers_params
+        params.require(:garbage_producer).permit(:producer_name, :producer_pass, :email_producer, :address, :opening_time, :closing_time, :province_id)
+    end
 end
