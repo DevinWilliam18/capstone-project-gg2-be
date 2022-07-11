@@ -1,24 +1,20 @@
-# README
+# **GADA API**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
+GADA API is used for sharing food waste information to Food Rescue *Volunteers*. *Garbage producers* can share their food waste info by storing it through this API.
 
-Things you may want to cover:
+## Use cases
 
-* Ruby version
+#### Garbage Producer
+      1. Create account
+          Garbage producers are required to create an account
+      2. Upload item
+      3. Manage item
+      4. Update status order 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Volunteer
+      1. create account
+	        Volunteers are required to create an account
+      2. make an order
+      3. choose your item/food
+      4. manage the order
