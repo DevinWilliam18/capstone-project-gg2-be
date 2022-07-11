@@ -13,8 +13,8 @@ GADA API is used for sharing food waste information to Food Rescue *Volunteers*.
       4. Update status order 
 
 #### Volunteer
-      1. create account
+      1. Create account
 	 Volunteers are required to create an account
-      2. make an order
-      3. choose your item/food
-      4. manage the order
+      2. Make an order
+      3. Choose your item/food
+      4. Manage the order
